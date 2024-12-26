@@ -3,11 +3,10 @@ import torch.optim as optim
 from tqdm import tqdm
 from sklearn.metrics import f1_score
 from torch.utils.tensorboard import SummaryWriter
-from model import ResNetWithSE
 
-def train_model(trainloader, testloader, device, num_epochs=30, save_dir='./models'):
+def train_model(model,trainloader, testloader, device, num_epochs=30, save_dir='./models'):
     writer = SummaryWriter(log_dir='./logs')
-    model = ResNetWithSE().to(device)
+    model = model.to(device)
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.5)
