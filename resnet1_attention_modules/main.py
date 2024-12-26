@@ -17,8 +17,8 @@ if __name__ == "__main__":
     os.makedirs(save_dir, exist_ok=True)
 
     # 训练模式
-    model = ResNetWithSE().to(device)
-    train_model(model,trainloader, testloader, device, num_epochs=30, save_dir=save_dir)
+    # model = ResNetWithSE().to(device)
+    # train_model(model,trainloader, testloader, device, num_epochs=30, save_dir=save_dir)
 
 
 
@@ -26,12 +26,12 @@ if __name__ == "__main__":
     # test_model(testloader, model, device)
 
     # 测试可视化模式
-    # model = ResNetWithSE().to(device)
-    # model_path = "../models/RESNET1_attention_main full_epoch30.pth"
-    # model.load_state_dict(torch.load(model_path, map_location=device))
-    # summary(model, (3, 32, 32))
-    # print(f"模型加载：{model_path}")
+    model = ResNetWithSE().to(device)
+    model_path = "../models/RESNET1_attention_main full_epoch30.pth"
+    model.load_state_dict(torch.load(model_path, map_location=device))
+    summary(model, (3, 32, 32))
+    print(f"模型加载：{model_path}")
 
-    # test_accuracy = test_model(testloader, model, device)
+    test_accuracy = test_model(testloader, model, device)
 
-    # visualize_predictions(testloader, model, device, 32)
+    visualize_predictions(testloader, model, device, 32)
