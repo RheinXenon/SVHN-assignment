@@ -3,7 +3,7 @@ import os
 from data_utils import get_data_loaders
 from train import train_model
 from test import test_model
-from model import ResNetWithSE
+from model import MobileNetV2Custom
 from visualization import visualize_predictions
 from torchsummary import summary
 
@@ -17,21 +17,21 @@ if __name__ == "__main__":
     os.makedirs(save_dir, exist_ok=True)
 
     # 训练模式
-    model = ResNetWithSE().to(device)
-    train_model(model,trainloader, testloader, device, num_epochs=30, save_dir=save_dir)
+    # model = MobileNetV2Custom().to(device)
+    # train_model(model,trainloader, testloader, device, num_epochs=30, save_dir=save_dir)
 
 
 
     # 评估测试模式
     # test_model(testloader, model, device)
 
-    # 测试可视化模式
-    # model = ResNetWithSE().to(device)
-    # model_path = "../models/RESNET1_attention_main full_epoch30.pth"
-    # model.load_state_dict(torch.load(model_path, map_location=device))
-    # summary(model, (3, 32, 32))
-    # print(f"模型加载：{model_path}")
+    # 测试可视化模式w
+    model = MobileNetV2Custom().to(device)
+    model_path = "../models/resnet_se_epoch30.pth"
+    model.load_state_dict(torch.load(model_path, map_location=device))
+    summary(model, (3, 32, 32))
+    print(f"模型加载：{model_path}")
 
-    # test_accuracy = test_model(testloader, model, device)
+    test_accuracy = test_model(testloader, model, device)
 
-    # visualize_predictions(testloader, model, device, 32)
+    visualize_predictions(testloader, model, device, 32)
