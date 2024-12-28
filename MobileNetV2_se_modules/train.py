@@ -83,6 +83,6 @@ def train_model(model,trainloader, testloader, device, num_epochs=30, save_dir='
         scheduler.step()
 
         if (epoch + 1) % 5 == 0:
-            torch.save(model.state_dict(), f"{save_dir}/resnet_se_epoch{epoch+1}.pth")
-            print(f"模型已保存到 {save_dir}/resnet_se_epoch{epoch+1}.pth")
+            torch.save(model.state_dict(), f"{save_dir}/MobileNetV2_se_epoch{epoch+1}.pth")
+            print(f"模型已保存到 {save_dir}/MobileNetV2_se_epoch{epoch+1}.pth")
     writer.close()

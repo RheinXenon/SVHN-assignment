@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     # 测试可视化模式w
     model = MobileNetV2Custom().to(device)
-    model_path = "../models/resnet_se_epoch30.pth"
+    model_path = "../models/MobileNetV2_se_epoch30.pth"
     model.load_state_dict(torch.load(model_path, map_location=device))
     summary(model, (3, 32, 32))
     print(f"模型加载：{model_path}")
